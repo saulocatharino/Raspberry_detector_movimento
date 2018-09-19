@@ -4,7 +4,7 @@ import cv2
 from scipy.spatial import distance
 from picamera.array import PiRGBArray
 from picamera import PiCamera
-
+from random import randint
 #lower = np.array([0, 133, 100], dtype = "uint8")
 #upper = np.array([255, 173, 127], dtype = "uint8")
 
@@ -42,7 +42,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
             (x,y,w,h) = cv2.boundingRect(contour)
             contour_valid = (w >= 40) and (h >= 40)
             if contour_valid:
-                cv2.rectangle(image, (x,y), (x+w,y+h), (255,0,255),2)
+                cv2.rectangle(image, (x,y), (x+w,y+h), (randint(0,255),randint(0,255),randint(0,255)),2)
             if not contour_valid:
                 continue
 
