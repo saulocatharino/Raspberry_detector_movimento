@@ -37,12 +37,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
             if not contour_valid:
                 continue
 
-        #w_ = int(radius * 2)
-
-        #sss = distance.euclidean((x_,y_),(x_ +w_,y_ +h_))
-
-        #if sss>30:
-            #cv2.rectangle(image, (x_, y_), (x_ + w_, y_ + h_), (254, 255, 0), 2)
 
     cv2.imshow('Camera', image)
     rawCapture.truncate(0)
