@@ -1,15 +1,10 @@
 import time
 import numpy as np
 import cv2
-from scipy.spatial import distance
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 from random import randint
-#lower = np.array([0, 133, 100], dtype = "uint8")
-#upper = np.array([255, 173, 127], dtype = "uint8")
 
-#lower = np.array([0, 48, 80], dtype = "uint8")
-#upper = np.array([20, 255, 255], dtype = "uint8")
 
 fgbg = cv2.createBackgroundSubtractorMOG2(history=20,
                                           varThreshold=16,
@@ -34,10 +29,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     #contours
     im2, contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     if len(contours) > 0:
-        cnt = contours[0]
-        #cv2.drawContours(fgmask, contours, -1, (0, 255, 0), 3)
-        # find largest contour in mask, use to compute minEnCircle
-
         for (i,contour) in enumerate (contours):
             (x,y,w,h) = cv2.boundingRect(contour)
             contour_valid = (w >= 40) and (h >= 40)
@@ -46,12 +37,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
             if not contour_valid:
                 continue
 
-        #c = max(contours, key=cv2.contourArea)
-        #(x, y), radius = cv2.minEnclosingCircle(c)
-        #M = cv2.moments(c)
-        #x_ = int(x - radius)
-        #y_ = int(y - radius)
-        #h_ = int(radius * 2)
         #w_ = int(radius * 2)
 
         #sss = distance.euclidean((x_,y_),(x_ +w_,y_ +h_))
