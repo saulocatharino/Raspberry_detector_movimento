@@ -39,6 +39,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 
     cv2.imshow('Camera', image)
     rawCapture.truncate(0)
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:
+    k = cv2.waitKey(1)
+    if k == ord('q'):
         break
