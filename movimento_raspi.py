@@ -1,8 +1,6 @@
 import time
 import numpy as np
 import cv2
-from picamera.array import PiRGBArray
-from picamera import PiCamera
 from random import randint
 
 
@@ -32,7 +30,6 @@ while True:
 
 
     cv2.imshow('Camera', image)
-    rawCapture.truncate(0)
     k = cv2.waitKey(1)
     if k == ord('q'):
         break
