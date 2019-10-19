@@ -11,8 +11,7 @@ fgbg = cv2.createBackgroundSubtractorMOG2(history=20,
 
 cap = cv2.VideoCapture(0)
 #print("foi") 
-# allow the camera to warmup
-time.sleep(0.1)
+
 while True:
     _, image = cap.read()
 
