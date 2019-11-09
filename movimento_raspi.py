@@ -14,12 +14,14 @@ cap = cv2.VideoCapture(0)
 
 while True:
     _, image = cap.read()
-
+    black = np.zeros_like(image)
     fgmask = fgbg.apply(image)
     #contours
-    im2, contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    im, contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cv2.drawContours(black, contours, 0, (255,255,255), 3)
     if len(contours) > 0:
         for (i,contour) in enumerate (contours):
+            cv2.drawContours(black, contour, 0, (255,255,255), 3)
             (x,y,w,h) = cv2.boundingRect(contour)
             contour_valid = (w >= 40) and (h >= 40)
             if contour_valid:
@@ -27,7 +29,7 @@ while True:
             if not contour_valid:
                 continue
 
-
+    cv2.imshow("mask", black)
     cv2.imshow('Camera', image)
     k = cv2.waitKey(1)
     if k == ord('q'):
