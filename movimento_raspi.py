@@ -18,7 +18,7 @@ while True:
     fgmask = fgbg.apply(image)
     #contours
     im, contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    cv2.drawContours(black, contours, 0, (255,255,255), 3)
+    
     if len(contours) > 0:
         for (i,contour) in enumerate (contours):
             cv2.drawContours(black, contour, 0, (255,255,255), 3)
